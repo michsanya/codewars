@@ -49,11 +49,11 @@ rang = "A23456789TJQK"
 cards_rang = []
 for s in suits:
     for r in rang:
-        c = r+s
+        c = r + s
         cards_rang.append(c)
 
-
 card = [dict(zip(cards_rang, range(0, 53))), dict(zip(range(0, 53), cards_rang))]
+
 
 def encode(cards):
     out = []
