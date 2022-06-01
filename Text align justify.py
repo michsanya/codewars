@@ -51,10 +51,28 @@ Have fun :)
 
 
 def justify(text, width):
-    if (text[width-2] != ' ') and (text[width-1] == ' '):
-        text = text[:width-1] + '\n' + text[width:]
+    new_text = ''
 
-    return text
+    while len(text) > width:
+        line = text[:width]
+        last_space_num = line.rfind(' ')
+        if line[0] == ' ':
+            line = line[1:]
+        if line[-1] == ' ':
+            line = line[:-1]
+
+        num = line.count(' ')
+        # Сделать добавление пробелов
+
+        line = line + '\n'
+
+
+        text = text[last_space_num+1:]
+
+        new_text = new_text + line
+
+    new_text = new_text + text
+    return new_text
 
 
 print(justify('123 45 6', 7))
