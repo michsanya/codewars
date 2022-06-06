@@ -53,18 +53,23 @@ Have fun :)
 def justify(text, width):
     new_text = ''
 
-    while len(text) >= width + 1:
-        if text[width] == ' ':
-            line = text[:width]
-            text = text[width + 2:]
+    while len(text) >= width:
+        if text[width-1] == ' ':
+            line = text[:width-1]
+            text = text[width:]
         else:
-            last_space_pos = text.rfind(' ')
+            last_space_pos = text[:width+1].rfind(' ')
             line = text[:last_space_pos]
             text = text[last_space_pos + 1:]
 
-        while len(line) != width:
-            # To add space adder
-            line = line.replace(' ', '  ', 1)
+        i = 0
+
+        while len(line) < width-1:
+            if line[i] == ' ':
+                line = line[:i]+' '+line[i:]
+                i = i + 2
+            else:
+                i = i + 1
 
         new_text = new_text + line + '\n'
 
@@ -72,4 +77,9 @@ def justify(text, width):
     return new_text
 
 
-print(justify('1 2 3 456', 7))
+print(justify('10 20 30 40 50 60 70 80 90', 8))
+# 10 20 30
+# 30   40
+# 50   60
+
+# Line length is not 15: 752 should equal 15
